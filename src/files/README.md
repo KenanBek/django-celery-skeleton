@@ -1,0 +1,1 @@
+Directory for project specific files: templates, static files, media content, etc.
