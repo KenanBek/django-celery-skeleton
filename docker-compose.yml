@@ -1,0 +1,78 @@
+version: "3"
+
+services:
+  # PostgreSQL
+  db:
+    image: postgres:9.4
+    hostname: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+
+  # Redis
+  redis:
+    image: redis:2.8.19
+    hostname: redis
+    ports:
+      - "6379:6379"
+
+  # RabbitMQ
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:3.6.0
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "5672:5672"  # We forward this port because it's useful for debugging
+      - "15672:15672"  # Here, we can access RabbitMQ management plugin
+
+  # Django
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    hostname: web
+    # From documentation:
+    # However, Compose does not wait until a container is “ready”
+    # (whatever that means for your particular application) - only until it’s
+    # running. There’s a good reason for this.
+    command: ["./wait-for-postgres.sh", "db", "./entrypoint.sh"]
+    volumes:
+      # Mount src to app
+      - ./src:/app
+      # Mount entrypoint.sh to run in container
+      - ./entrypoint.sh:/app/entrypoint.sh
+      # Mount wait-for-postgres.sh to run in container
+      - ./wait-for-postgres.sh:/app/wait-for-postgres.sh
+    expose:
+      - "8000"
+    depends_on:
+      - db
+    restart: always
+
+  lb:
+    image: dockercloud/haproxy
+    # Recommended way is using networks instead of links
+    links:
+     - web
+    volumes:
+      # Mount unix socket for back communication (needs to be updated)
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+     - "80:80"
+
+  # Celery
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A core worker -l info
+    volumes:
+      - ./src:/app
+    depends_on:
+      - web
+      - rabbit
