@@ -2,10 +2,12 @@
 
 Django and Celery skeleton project.
 
-Versions
+## Versions
 
-:Django: 1.11.11
-:Celery: 4.1.0
+App | Version
+--- | ---
+Django | 1.11.11
+Celery | 4.1.0
 
 # Project structure
 
