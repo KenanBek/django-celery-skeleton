@@ -2,6 +2,11 @@
 
 Django and Celery skeleton project.
 
+Versions
+
+:Django: 1.11.11
+:Celery: 4.1.0
+
 # Project structure
 
     django-celery-skeleton/
@@ -33,4 +38,4 @@ Django and Celery skeleton project.
 # Run from local machine
 
     python manage.py runserver
-    celery -A django-celery-skeleton worker -l info
+    celery -A core worker -l info
