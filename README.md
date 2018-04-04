@@ -6,6 +6,7 @@ Django and Celery skeleton project.
 
 App | Version
 --- | ---
+Python | 2.7.12
 Django | 1.11.11
 Celery | 4.1.0
 
