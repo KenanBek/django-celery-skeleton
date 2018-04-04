@@ -1,9 +1,8 @@
-# IDEs, sqlite, containers
-
+# IDEs, containers, sqlite
 .idea
 .vscode
-*.sqlite3
 .vagrant
+*.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

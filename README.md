@@ -29,3 +29,8 @@ Django and Celery skeleton project.
     |---docker-compose.yml
     |---requirements.txt
     |---README.md
+
+# Run from local machine
+
+    python manage.py runserver
+    celery -A django-celery-skeleton worker -l info
