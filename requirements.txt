@@ -4,5 +4,7 @@ celery==4.1.0
 Django==1.11.11
 django-celery-results==1.0.1
 kombu==4.1.0
+psycopg2==2.7.4
 pytz==2018.3
+redis==2.10.6
 vine==1.1.4

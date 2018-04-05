@@ -14,7 +14,7 @@ Celery | 4.1.0
 
     django-celery-skeleton/
     |---src                                     # django project folder
-    |   |---core                                # django root configuration
+    |   |---dcs                                 # django root configuration
     |   |   |---settings.py
     |   |   |---urls.py
     |   |   |---wsgi.py

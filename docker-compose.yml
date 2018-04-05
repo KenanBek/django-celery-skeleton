@@ -70,7 +70,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: celery -A core worker -l info
+    command: celery worker -A dcs.celeryconf -Q default -n default@%h
     volumes:
       - ./src:/app
     depends_on:
