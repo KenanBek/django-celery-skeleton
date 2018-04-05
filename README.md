@@ -54,7 +54,21 @@ Celery | 4.1.0
     |---requirements.txt
     |---README.md
 
-# Run from local machine
+# Setup & Run
 
+## Copy git repository
+
+    git clone https://github.com/KenanBek/django-celery-skeleton.git
+    cd django-celery-skeleton
+
+## Run inside docker
+
+    docker-compose build
+    docker-compose up
+
+## Run from local machine
+
+    pip install -r requirements.txt
+    cd src
     python manage.py runserver
-    celery -A dcs worker -l info
+    celery worker -A dcs.celeryconf -Q default -n default@%h
