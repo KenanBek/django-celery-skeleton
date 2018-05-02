@@ -20,9 +20,12 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^demo/', include('demo.urls')),
+    # Static home page with links (see settings.TEMPLATES conf)
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
+    # Link to administration
+    url(r'^admin/', admin.site.urls),
+    # Link to demo application
+    url(r'^demo/', include('demo.urls')),
 ]
 
 if settings.DEBUG:

@@ -63,8 +63,12 @@ Celery | 4.1.0
 
 ## Run inside docker
 
+    # build docker containers
     docker-compose build
+    # option 1: run 1 instance of web
     docker-compose up
+    # option 2: run 3 instances of web over load balancer
+    docker-compose up --scale web=3
 
 ## Run from local machine
 
