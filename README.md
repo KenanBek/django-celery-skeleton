@@ -65,10 +65,23 @@ Celery | 4.1.0
 
     # build docker containers
     docker-compose build
+
     # option 1: run 1 instance of web
     docker-compose up
+
     # option 2: run 3 instances of web over load balancer
     docker-compose up --scale web=3
+    
+    # option 3: run in background with -d
+    docker-compose up -d --scale web=3
+
+You can also run manage.py commands using docker environment, for example tests.
+
+    docker-compose run web python ./manage.py test
+
+See docker's logs
+
+    docker-compose logs --tail 5
 
 ## Run from local machine
 
