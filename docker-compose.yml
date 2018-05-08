@@ -54,6 +54,7 @@ services:
       - db
     restart: always
 
+  # Load Balancer
   lb:
     image: dockercloud/haproxy
     # Recommended way is using networks instead of links
