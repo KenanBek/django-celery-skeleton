@@ -85,7 +85,16 @@ See docker's logs
 
 ## Run from local machine
 
+    # Install requirements
+    virtualenv env
+    source env/bin/activate
     pip install -r requirements.txt
+    
+    # Move to 'src' folder
     cd src
-    python manage.py runserver
+    
+    # Run worker
     celery worker -A dcs.celeryconf -Q default -n default@%h
+    
+    # Start application on another console
+    python manage.py runserver
