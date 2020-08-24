@@ -3,7 +3,8 @@ version: "3"
 services:
   # PostgreSQL
   db:
-    image: postgres:9.4
+    # running the alpine image is more efficient for the memory usage for your server
+    image: postgres:12.4-alpine
     hostname: db
     environment:
       - POSTGRES_USER=postgres
@@ -14,7 +15,7 @@ services:
 
   # Redis
   redis:
-    image: redis:2.8.19
+    image: redis:6.0.6-alpine
     hostname: redis
     ports:
       - "6379:6379"
